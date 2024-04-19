@@ -1,15 +1,31 @@
+import pathlib
+
 import torch
-from transformers import BertForQuestionAnswering
-from transformers import BertTokenizer
+from transformers import BertForQuestionAnswering, BertTokenizer
 
 
 def run_bert_model(question, paragraph):
+    # model = BertForQuestionAnswering.from_pretrained(
+    #     "bert-large-uncased-whole-word-masking-finetuned-squad"
+    # )
+
+    # tokenizer = BertTokenizer.from_pretrained(
+    #     "bert-large-uncased-whole-word-masking-finetuned-squad"
+    # )
     model = BertForQuestionAnswering.from_pretrained(
-        "bert-large-uncased-whole-word-masking-finetuned-squad"
+        pathlib.Path(
+            "ml/google-bert/bert-large-uncased-whole-word-masking-finetuned-squad"
+        ).absolute(),
+        local_files_only=True,
+        # from_flax=True,
     )
 
     tokenizer = BertTokenizer.from_pretrained(
-        "bert-large-uncased-whole-word-masking-finetuned-squad"
+        pathlib.Path(
+            "ml/google-bert/bert-large-uncased-whole-word-masking-finetuned-squad"
+        ).absolute(),
+        local_files_only=True,
+        # from_flax=True,
     )
 
     # answer_text is paragraph
